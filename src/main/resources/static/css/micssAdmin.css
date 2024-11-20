@@ -1,0 +1,359 @@
+@charset "UTF-8";
+
+/*ESTILO MENU*/
+/* Estilo para el menú de administración */
+/* General body styles */
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #f4f7fa;
+	margin: 0;
+	padding: 0;
+}
+
+/* Header section (Zona de administración) */
+.zonaAdministracion {
+	background-color: #d8b49d;
+	text-align: center;
+	color: white;
+	font-size: 14px;
+	padding: 7px;
+	font-weight: bold;
+	text-transform: uppercase;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation links */
+.menu-admin a {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px 20px;
+	background-color: #673931;
+	color: white;
+	text-decoration: none;
+	border-radius: 5px;
+	font-size: 16px;
+	text-align: center;
+	transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for links */
+menu-admin a:hover {
+	background-color: #673831;
+	transform: scale(0.99);
+}
+
+/* Last link for logout with special styling */
+a[href="../logout-admin"] {
+	background-color: #ff5757;
+	font-weight: bold;
+}
+
+a[href="../logout-admin"]:hover {
+	background-color: #e94e4e;
+}
+
+/* Add spacing between links */
+
+
+/* Optional: Add some space around the body content */
+body>div {
+	padding: 20px;
+}
+
+/* Responsive design for smaller screens */
+@media ( max-width : 768px) {
+	menu-admin a {
+		width: 100%;
+		text-align: center;
+		margin: 5px 0;
+	}
+}
+
+/*ESTILO CAFES ADMIN*/
+
+/* Estilo para el título */
+.titulo {
+	font-size: 1.5em; /* Tamaño de fuente grande */
+	margin: 20px 0; /* Margen alrededor del título */
+	color: #6f4c3e; /* Color marrón */
+	text-align: center; /* Centrar el texto */
+}
+
+/* Estilo para el botón de nuevo café */
+.nuevo-cafe {
+	text-align: center; /* Centrar el botón */
+	margin-bottom: 20px; /* Espacio debajo del botón */
+}
+
+.btn-nuevo {
+	padding: 10px 15px; /* Espaciado interno */
+	background-color: #6f4c3e; /* Color marrón */
+	color: white; /* Texto blanco */
+	border-radius: 5px; /* Bordes redondeados */
+	text-decoration: none; /* Sin subrayado */
+	transition: background-color 0.3s; /* Efecto de transición */
+}
+
+.btn-nuevo:hover {
+	background-color: #5a3e30; /* Color más oscuro al pasar el mouse */
+}
+
+/* Estilo para el contenedor de la cuadrícula */
+.grid-container {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	/* Tres columnas de igual ancho */
+	gap: 20px; /* Espacio entre los cuadros */
+	margin: 20px; /* Margen alrededor de la cuadrícula */
+}
+
+/* Estilo para cada café en la cuadrícula */
+.cafe {
+	background-color: white; /* Fondo blanco para cada cuadro */
+	border-radius: 8px; /* Bordes redondeados */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+	padding: 15px; /* Espaciado interno */
+	text-align: center; /* Centrar el texto dentro del cuadro */
+}
+
+/* Estilo para la imagen del café */
+.imagen-cafe {
+	width: 100%; /* Ancho completo del cuadro */
+	height: auto;
+	/* Altura automática para mantener la relación de aspecto */
+	border-radius: 5px; /* Bordes redondeados para la imagen */
+	margin-bottom: 10px; /* Espacio debajo de la imagen */
+}
+
+/* Estilo para el enlace de acción */
+.acciones a:hover {
+	text-decoration: underline; /* Subrayar al pasar el mouse */
+}
+
+/* Estilo para los enlaces de borrar y editar */
+.acciones a {
+	display: inline-block; /* Para poder aplicar padding */
+	margin: 5px 10px; /* Espaciado entre los enlaces */
+	padding: 10px 15px; /* Espaciado interno */
+	color: white; /* Color del texto */
+	border-radius: 5px; /* Bordes redondeados */
+	text-decoration: none; /* Sin subrayado */
+	transition: background-color 0.3s, transform 0.2s;
+	/* Transiciones suaves */
+}
+
+/* Estilo para el enlace de borrar */
+.borrar-cafe-click {
+	background-color: #ff6b6b; /* Color pastel rojo */
+}
+
+.borrar-cafe-click:hover {
+	background-color: #ff4d4d;
+}
+
+.editar-cafe-click {
+	background-color: olive;
+}
+
+.editar-cafe-click:hover {
+	background-color: #9b9b11;
+}
+
+/*EDITAR CAFES*/
+
+/* Estilo para el menú de administración */
+.menu-admin {
+	background-color: #f7eac8;
+	text-align: center; /* Centrar texto */
+	padding: 15px; /* Espacio interno */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+	margin-bottom: 20px; /* Espacio debajo del menú */
+}
+
+/* Estilo para el título de la edición */
+.titulo-edicion {
+	font-size: 1.8em; /* Tamaño de fuente grande */
+	font-weight: bold; /* Negrita */
+	color: #6f4c3e; /* Color marrón */
+	margin: 20px 0; /* Espacio alrededor del título */
+	text-align: center; /* Centrar el texto */
+}
+
+/* Estilo para el fondo de la página */
+body {
+	background-color: #f9f3e8; /* Fondo pastel suave */
+}
+
+/* Estilo para el formulario */
+.formulario-cafe {
+	max-width: 600px; /* Ancho máximo del formulario */
+	margin: 0 auto; /* Centrar el formulario */
+	padding: 20px; /* Espaciado interno */
+	border: 1px solid #ccc; /* Borde del formulario */
+	border-radius: 10px; /* Bordes redondeados */
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+	background-color: white; /* Fondo blanco */
+}
+
+/* Estilo para los campos del formulario */
+.formulario-cafe input[type="text"], .formulario-cafe input[type="number"],
+	.formulario-cafe textarea {
+	width: calc(100% - 20px); /* Ancho completo menos margen */
+	padding: 10px; /* Espaciado interno */
+	margin: 10px auto; /* Margen vertical */
+	border: 1px solid #ccc; /* Borde del campo */
+	border-radius: 5px; /* Bordes redondeados */
+	box-sizing: border-box;
+	/* Incluir padding y border en el ancho total */
+}
+
+/* Estilo para el botón de actualización */
+.boton-actualizar {
+	padding: 10px 15px; /* Espaciado interno */
+	background-color: #6f4c3e; /* Color marrón */
+	color: white; /* Texto blanco */
+	border: none; /* Sin borde */
+	border-radius: 5px; /* Bordes redondeados */
+	cursor: pointer; /* Cambia el cursor al pasar el mouse */
+	transition: background-color 0.3s; /* Efecto de transición */
+	display: block; /* Para centrar el botón */
+	margin: 20px auto; /* Centrar con margen */
+}
+
+.boton-actualizar:hover {
+	background-color: #5a3e30; /* Color más oscuro al pasar el mouse */
+}
+
+/*ESTILOS CAFE NUEVO*/
+.titulo-registro {
+	font-size: 1.8em; /* Tamaño de fuente grande */
+	font-weight: bold; /* Negrita */
+	color: #6f4c3e; /* Color marrón */
+	margin: 20px 0; /* Espacio alrededor del título */
+	text-align: center; /* Centrar el texto */
+}
+
+/* Estilo para el fondo de la página */
+body {
+	background-color: #f9f3e8; /* Fondo pastel suave */
+}
+
+/* Estilo para el formulario */
+.formulario-nuevo-cafe {
+	max-width: 600px; /* Ancho máximo del formulario */
+	margin: 0 auto; /* Centrar el formulario */
+	padding: 20px; /* Espaciado interno */
+	border: 1px solid #ccc; /* Borde del formulario */
+	border-radius: 10px; /* Bordes redondeados */
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+	background-color: white; /* Fondo blanco */
+}
+
+/* Estilo para los campos del formulario */
+.formulario-nuevo-cafe input[type="text"], .formulario-nuevo-cafe input[type="number"],
+	.formulario-nuevo-cafe textarea, .formulario-nuevo-cafe input[type="file"]
+	{
+	width: calc(100% - 20px); /* Ancho completo menos margen */
+	padding: 10px; /* Espaciado interno */
+	margin: 10px auto; /* Margen vertical */
+	border: 1px solid #ccc; /* Borde del campo */
+	border-radius: 5px; /* Bordes redondeados */
+	box-sizing: border-box;
+	/* Incluir padding y border en el ancho total */
+}
+
+/* Estilo para el botón de registro */
+.boton-registrar {
+	padding: 10px 15px; /* Espaciado interno */
+	background-color: #6f4c3e; /* Color marrón */
+	color: white; /* Texto blanco */
+	border: none; /* Sin borde */
+	border-radius: 5px; /* Bordes redondeados */
+	cursor: pointer; /* Cambia el cursor al pasar el mouse */
+	transition: background-color 0.3s; /* Efecto de transición */
+	display: block; /* Para centrar el botón */
+	margin: 20px auto; /* Centrar con margen */
+}
+
+.boton-registrar:hover {
+	background-color: #5a3e30; /* Color más oscuro al pasar el mouse */
+}
+
+/*BUSCADOR Y PAGINACION*/
+
+/*ESTILO PARA AÑADIR CAFE*/
+.newCaffe {
+	color: #6F4E37;
+	font-size: 24px;
+	margin-bottom: 30px;
+	text-align: center;
+	width: 100%;
+	display: block;
+}
+
+form {
+	max-width: 600px;
+	margin: 20px auto;
+	background-color: white;
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+form>div {
+	margin-bottom: 20px;
+}
+
+/* Form title */
+h2 {
+	color: #6F4E37;
+	font-size: 24px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+/* Labels */
+label {
+	display: block;
+	margin-bottom: 5px;
+	color: #6F4E37;
+	font-weight: 500;
+}
+
+
+/* Error messages */
+.error-message {
+	color: #D32F2F;
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+/* Select dropdown styling */
+select {
+	appearance: none;
+	background-image:
+		url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236F4E37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+	background-repeat: no-repeat;
+	background-position: right 10px center;
+	background-size: 1em;
+}
+
+/* Responsive design */
+@media ( max-width : 768px) {
+	form {
+		padding: 20px;
+		margin: 10px;
+	}
+}
+
+/* Focus states */
+input:focus, textarea:focus, select:focus {
+	outline: none;
+	border-color: #8B4513;
+	box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
+}
+
+/* Spacing between form elements */
+input+label, textarea+label, select+label {
+	margin-top: 20px;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="css/micss.css" />
+
+</head>
+<body>
+	<div>
+		<a href="admin/">Accéder à l'administration de la boutique.</a>
+	</div>
+
+<div style="font-size: 12px; margin: 5px; padding: 3px 8px; display: inline-block; border: 1px solid #ccc; border-radius: 8px;">
+  Idioma: 
+  <a href="?idioma=es" style="text-decoration: none; margin-right: auto; padding: 3px; border-radius: 8px; color: #333;">ESPAÑOL</a>
+  <a href="?idioma=en" style="text-decoration: none; color: #333; margin-right: auto; padding: 3px; border-radius: 8px;">ENGLISH</a>
+</div>
+
+	<div th:text="#{titulo.bienvenida}"></div>
+
+	<div id="menu">
+		<a href="#" id="menu-inicio">Accueil</a> <a href="#"
+			id="menu-identificarme">Se connecter</a> <a href="#"
+			id="menu-registrarme">Se réinscrire</a> <a href="#" id="menu-carrito">Carrito</a>
+		<a href="#" id="menu-mis-pedidos">Mes commandes</a> <a href="#"
+			id="menu-mis-datos">Mes informations personnelles</a> <a href="#"
+			id="menu-cerrar-sesion" style="visibility: hidden;">Log out</a>
+	</div>
+
+	<div id="contenedor"></div>
+
+	<script src="librerias_js/jquery.js"></script>
+	<script src="librerias_js/mustache.js"></script>
+	<script src="librerias_js/js.cookie.min.js"></script>
+
+	<script src="javascript/globales.js"></script>
+
+	<script>
+		sufijo_idioma = "_fr"
+	</script>
+
+	<script src="javascript/variables_plantillas.js"></script>
+	<script src="javascript/operaciones.js"></script>
+	<script src="javascript/operaciones_checkout.js"></script>
+	<script src="javascript/menu.js"></script>
+	<script src="javascript/validaciones.js"></script>
+	<script>
+		//listamos productos
+		obtenerProductos()
+	</script>
+
+</body>
+</html>

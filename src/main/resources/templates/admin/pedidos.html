@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Pedidos</title>
+    <link rel="stylesheet" href="../css/micssPedidos.css" />
+    <link rel="stylesheet" href="../css/micssAdmin.css" />
+</head>
+<body>
+
+    <!-- Menu -->
+    <div th:insert="fragments/general.html :: menu"></div>
+
+    <h1>Listado de Pedidos de la Tienda</h1>
+
+    <div th:each="p : ${pedidos}" class="pedido-container">
+        <div class="pedido-info">
+            <div class="nombre-completo" th:text="${p.nombreCompleto}"></div>
+            <div class="pedido-direccion">
+                Direccion: <span th:text="${p.direccion}"></span>
+            </div>
+            <div class="pedido-estado">
+                Estado: <span th:text="${p.estado}"></span>
+            </div>
+            <a th:href="@{${'ver-detalles-pedido?id=' + p.id}}" class="ver-detalles-btn">Ver detalles</a>
+        </div>
+    </div>
+
+</body>
+</html>

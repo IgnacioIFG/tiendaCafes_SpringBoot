@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Administración de Cafés</title>
+    <link rel="stylesheet" href="../css/micssAdmin.css" /> 
+</head>
+<body>
+<style>
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f3e8;
+    margin: 0;
+    padding: 20px;
+    color: #5D4037;
+}
+
+/* Title styles */
+.titulo {
+    font-size: 24px;
+    color: #6F4E37;
+    text-align: center;
+    margin: 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #6F4E37;
+}
+
+/* Search container styles */
+.buscador-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buscador form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.buscador input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #DCC1B0;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.buscador input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.buscador input[type="submit"]:hover {
+    background-color: #6F4E37;
+}
+
+/* Pagination styles */
+.buscador-container > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.buscador-container a {
+    padding: 8px 16px;
+    background-color: #8B4513;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.buscador-container a:hover {
+    background-color: #6F4E37;
+}
+
+/* Results count */
+.buscador-container h2 {
+    color: #6F4E37;
+    font-size: 18px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* New coffee button styles */
+.nuevo-cafe {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.btn-nuevo {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #8B4513;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-nuevo:hover {
+    background-color: #6F4E37;
+}
+
+/* Grid container styles */
+.grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.grid-container-cafe {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+/* Coffee card styles */
+.cafe {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Action buttons */
+.acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+
+</style>
+
+
+
+<div th:insert="fragments/general.html :: menu"></div>
+
+<div class="titulo">Administración de Cafés</div>
+
+<div class= "buscador-container">
+	<div class="buscador">
+	<form action="cafes">
+	buscador - titulo: <input type="text" name="nombre" th:value="${nombre}" /> 
+	<input type="submit" value="BUSCAR" />
+	</form>
+	</div>
+	<br/>
+	<div>
+	<a th:if="${ anterior >= 0 }" th:href="@{ ${ 'cafes?comienzo=' + anterior + '&titulo=' + titulo } }" >anterior</a>
+	<a th:if="${ siguiente < total }" th:href="@{ ${ 'cafes?comienzo=' + siguiente + '&titulo=' + titulo } }" >siguiente</a>
+	</div>
+	
+	<div style="margin: 10px">
+	 <h2>total de resultados: <span th:text="${total}"></span></h2>
+	</div>
+</div>
+
+<div class="nuevo-cafe">
+    <a href="cafes-nuevo" class="btn-nuevo">Registrar un nuevo Café</a>
+</div>
+
+<div class="titulo">Listado de Cafés de la tienda:</div>
+
+
+<div class="grid-container" >
+	<div class="grid-container-cafe" th:each="c : ${cafes}">
+
+        <div class="cafe">
+            <img class="imagen-cafe" th:src=" @{ ${ '../mostrar_imagen?id=' + c.id } } " alt="${elemento.nombre}"/>
+            <div><strong><span th:text="${c.nombre}" ></span></strong></div>
+            <div>Descripción:<span th:text="${c.descripcion}" ></span> </div>
+            <div>Grano:<span th:text="${c.grano}" ></span> </div>
+            <div>Región: <span th:text="${c.region}" ></span></div>
+            <div>Cuerpo:<span th:text="${c.cuerpo}" ></span> </div>
+            <div>Categoria: <span th:text="${c.categoria.nombre}" ></span></div>
+            <div>Precio:<span th:text="${c.precio}" ></span> $</div>
+
+
+            <div class="acciones">
+                <a class="borrar-cafe-click" th:href="@{${'cafes-borrar?id='+c.id}}" onclick="return confirm('¿Seguro que deseas borrar este café?');">Borrar</a>
+                <a class="editar-cafe-click" href="#">Editar</a>
+            </div>
+        </div>
+        
+       </div>
+</div>
+
+</body>
+</html>

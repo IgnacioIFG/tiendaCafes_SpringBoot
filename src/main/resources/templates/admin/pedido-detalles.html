@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Pedido</title>
+        <link rel="stylesheet" href="../css/micssPedidosDetalles.css" />
+   		 <link rel="stylesheet" href="../css/micssAdmin.css" />
+</head>
+<body>
+
+<div th:insert="fragments/general.html :: menu"></div>
+
+<div class="contenedor-principal">
+    <h1>Detalles del Pedido</h1>
+
+    <div style="text-align: center;">Datos de Envío:</div>
+    <section>
+        Nombre completo: <span th:text="${pedido.nombreCompleto}"></span><br>
+        Dirección: <span th:text="${pedido.direccion}"></span><br>
+        País: <span th:text="${pedido.provincia}"></span><br>
+        Provincia: <span th:text="${pedido.provincia}"></span><br>
+        Ciudad: <span th:text="${pedido.ciudad}"></span><br>
+        Código postal: <span th:text="${pedido.codigoPostal}"></span><br>
+    </section>
+
+    <div style="text-align: center;">Datos de Pago:</div>
+    <section>
+        Tipo de tarjeta: <span th:text="${pedido.tipoTarjeta}"></span><br>
+        Titular: <span th:text="${pedido.titularTarjeta}"></span><br>
+        Número de tarjeta: <span th:text="${pedido.numeroTarjeta}"></span><br>
+        Número de seguridad: <span th:text="${pedido.numSeguridad}"></span><br>
+        Fecha de caducidad: <span th:text="${pedido.fechaCaducidad}"></span><br>
+    </section>
+
+    <div style="text-align: center;">Productos del Pedido:</div>
+    <section th:each="productoPedido : ${pedido.productosPedido}">
+        Nombre: <span th:text="${productoPedido.cafe.nombre}"></span><br>
+        Precio/unidad: <span th:text="${productoPedido.cafe.precio}"></span><br>
+        Cantidad: <span th:text="${productoPedido.cantidad}"></span><br>
+        Precio total del pedido: <span th:text="${pedido.precioFinal}"></span><br>
+    </section>
+
+    <input type="hidden" id="id_pedido" th:field="${pedido.id}" />
+
+    <select id="select_estado" th:field="${pedido.estado}">
+        <option th:each="estado: ${estados}" th:text="${estado}" th:value="${estado.key}"></option>
+    </select>
+</div>
+
+<script src="../librerias_js/jquery.js"></script>
+<script>
+    $("#select_estado").change(function(){
+        let estado = $("#select_estado").find(":selected").val();
+        let idPedido = $("#id_pedido").val();
+        alert("Estado: " + estado + " a la id de pedido: " + idPedido);
+        $.post("administracion-actualizar-estado-pedido", {
+            id: idPedido,
+            estado: estado
+        }).done(function(res){
+            alert(res);
+        });
+    });
+</script>
+
+</body>
+</html>

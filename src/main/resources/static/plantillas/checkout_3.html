@@ -1,0 +1,46 @@
+<!-- paso 3 del procedimiento de checkout/compra -->
+<div>REALIZAR PEDIDO - PASO 3</div>
+<div>resumen del pedido:</div>
+
+<div>
+productos del pedido:
+<div id="productos_pedido">
+	{{#cafes}}
+		<div style="margin:10px">
+			nombre: {{nombre}} <br>
+			<img height="40px" src="mostrar_imagen?id={{id}}" /> <br>
+			cantidad: {{cantidad}} <br>
+			precio/unidad: {{precio}} €
+		</div>
+	{{/cafes}}
+</div>
+
+</div>
+
+<div>
+datos de envio:
+</div>
+<div style="margin: 10px">
+	nombre completo: {{nombreCompleto}} <br>
+	direccion: {{direccion}} <br>
+	pais: {{pais}} <br>
+	provincia: {{provincia}} <br>
+	ciudad: {{ciudad}} <br>
+	codigo postal: {{codigoPostal}} <br>
+</div>
+
+
+<div>
+datos de pago:
+</div>
+<div style=" margin: 10px">
+	tipo tarjeta: {{tipoTarjeta}} <br>
+	titular: {{titularTarjeta}} <br>
+	numero tarjeta: {{numeroTarjeta}} <br>
+	numero de seguridad: {{numeroSeguridad}} <br>
+	fecha de caducidad: {{fechaCaducidad}} <br>
+</div>
+
+<div>
+	<button style="padding: 10px" id="boton_confirmar_pedido" >CONFIRMAR PEDIDO</button>
+</div>

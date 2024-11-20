@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f3e8;
+    color: #5D4037;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 26px;
+    color: #6F4E37;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #6F4E37;
+    margin-top: 20px;
+}
+
+/* Style for each section of details */
+.datos-envio, .datos-pago, .productos-pedido, .estado-pedido {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.datos-envio p, .datos-pago p, .productos-pedido p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.producto {
+    margin: 10px 0;
+}
+
+/* Style for total price */
+.productos-pedido strong {
+    font-size: 18px;
+    color: #6F4E37;
+}
+
+/* Style for the select dropdown */
+.estado-pedido select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+
+/* Button for changing the state */
+.estado-pedido label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .datos-envio, .datos-pago, .productos-pedido, .estado-pedido {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 20px;
+    }
+
+    .estado-pedido select {
+        width: 100%;
+    }
+}
+
+/* Contenedor principal con margen */
+.contenedor-principal {
+    margin: 20px auto; /* Márgenes de 20px en la parte superior e inferior y centrado */
+    padding: 20px; /* Relleno interior */
+    max-width: 900px; /* Ancho máximo para evitar que el contenido sea muy amplio */
+    background-color: #fff; /* Fondo blanco para destacarse */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    border-radius: 8px; /* Bordes redondeados */
+}
+
+/* Estilos para los títulos */
+h1, h2 {
+    text-align: center;
+    color: #6F4E37;
+}
+
+/* Estilo para las secciones */
+section {
+    margin-bottom: 20px; /* Espaciado entre secciones */
+}
+
+section span {
+    font-weight: bold;
+}
+

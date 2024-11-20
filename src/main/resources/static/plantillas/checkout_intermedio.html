@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Pedido</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .contenedor-confirmar-pedido,
+        .contenedor-paso-intermedio {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .detalle-cafe-contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .detalle-cafe-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .detalle-cafe-header h2 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+
+        .imagen-detalle-cafe {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .detalle-cafe-info {
+            font-size: 1.1em;
+        }
+
+        #total_productos,
+        #precio_total {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .codDescuento-container,
+        .detalles-envio {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        #realizar-pedido {
+            display: inline-block;
+            background-color: #753f37;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        #realizar-pedido:hover {
+            background-color: #7f4942;
+        }
+
+        @media (max-width: 600px) {
+            .detalle-cafe-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+        
+         #mensaje_descuento {
+            display: none;
+            color: green;
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Confirmar pedido</h1>
+
+    <div class="contenedor-confirmar-pedido">
+        <div class="detalle-cafe-contenedor">
+            {{#.}}
+            <div class="detalle-cafe-header">
+                <img src="mostrar_imagen?id={{id}}" class="imagen-detalle-cafe" alt="{{titulo_cafe}}">
+                <div>
+                    <h2>{{nombre_cafe}}</h2>
+                    <div class="detalle-cafe-info">
+                        <div><strong>Precio:</strong> {{precio}} €</div>
+                    </div>
+                </div>
+            </div>
+            {{/.}}
+        </div>
+
+        <p>Total productos: <span id="total_productos"></span></p>
+        <p>Precio total: <span id="precio_total"></span> €</p>
+    </div>
+
+    <div class="contenedor-paso-intermedio">
+        <div class="codDescuento-container">
+            <label for="campo_codDescuento">Código de descuento:</label>
+            <strong id="mensaje_descuento" style="color: #6f4c3e; display: none;">Se aplicará un 5% de descuento en tu pedido.</strong>
+            <input type="text" id="campo_codDescuento" placeholder="Introduce el código">
+        </div>
+
+        <div class="detalles-envio">
+            <label for="campo_detallesEnvio">Detalles de envío:</label>
+            <textarea id="campo_detallesEnvio" placeholder="Introduce detalles adicionales"></textarea>
+        </div>
+    </div>
+
+    <div>
+        <button id="aceptar_paso_intermedio">CONFIRMAR PEDIDO</button>
+    </div>
+    
+<script>
+        // Esperamos a que el DOM se cargue completamente
+        document.addEventListener("DOMContentLoaded", function() {
+            const campoCodigoDescuento = document.getElementById("campo_codDescuento");
+            const mensajeDescuento = document.getElementById("mensaje_descuento");
+
+            // Escuchamos el evento 'input' en el campo de texto
+            campoCodigoDescuento.addEventListener("input", function() {
+                // Verificamos si el valor del input es exactamente "1234"
+                if (campoCodigoDescuento.value === "1234") {
+                    console.log("Código correcto, mostrando mensaje");
+                    mensajeDescuento.style.display = "block";  // Mostramos el mensaje
+                } else {
+                    mensajeDescuento.style.display = "none";  // Ocultamos el mensaje
+                }
+            });
+        });
+    </script>
+    
+    
+
+</body>
+</html>
