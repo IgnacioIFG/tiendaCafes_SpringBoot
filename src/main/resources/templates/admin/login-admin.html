@@ -1,20 +1,65 @@
-<!DOCTYPE html>
-<html>
+!DOCTYPE html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Administración de Café</title>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<style>
 
-Identificate si quieres entrar en administracion
-<br>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5e5d3;
+    color: #4a3728;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-<form action="admin/cafes">
-	pass <input type="password" name="pass-login-admin" value="123" /><br>
-	<input type="submit" value="ACEPTAR"/>
-</form>
+.login-container {
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
 
+form {
+    margin-top: 1rem;
+}
 
+input[type="password"] {
+    padding: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #d2b48c;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    padding: 0.5rem 1rem;
+    background-color: #6f4e37;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #8b5a2b;
+}
+</style>
+
+<div class="login-container">
+    <p>Identificate si quieres entrar en administracion</p>
+    <form action="admin/cafes">
+        pass <input type="password" name="pass-login-admin" value="123" />
+        <input type="submit" value="ACEPTAR"/>
+    </form>
+</div>
 </body>
 </html>
