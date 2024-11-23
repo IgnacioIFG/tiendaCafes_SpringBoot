@@ -2,33 +2,53 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>ByteCoffe</title>
 
-<link rel="stylesheet" href="css/micss.css" />
+<link rel="stylesheet" href="css/micssInicio.css" />
+<link rel="stylesheet" href="css/micssForms.css" />
+<link rel="stylesheet" href="css/micssCarrito.css" />
+
 
 </head>
 <body>
+
+    <header>
+        <div class="announcement-bar">
+            <p>ENVÍOS NACIONALES GRATIS EN PEDIDOS SUPERIORES A 20€ (PENÍNSULA)</p>
+        </div>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="imagenes_base/beany-of-coffe-animated-like-old-cartoons-removebg-preview.png" alt="Beany Wood Logo">
+            </div>
+            
+     
+            	<div id="menu">
+            	<ul class="nav-links">
+	                <li><a href="#" id="menu-inicio">Inicio</a></li>
+	                <li><a href="#" id="menu-identificarme">Identificarme</a></li>
+	                <li><a href="#" id="menu-registrarme">Registrarme</a> </li>
+	                <li><a href="#" id="menu-carrito">Carrito</a></li>
+	                <li><a href="#" id="menu-cerrar-sesion" style="visibility: hidden;">cerrar sesion</a></li>
+            	</ul>
+            	</div>
+
+            <div class="nav-buttons menu">
+                <a href="#" id="menu-identificarme2" class="icon-btn">👤</a>
+               	<a href="#" id="menu-carrito2" class="icon-btn">🛒</a>
+            </div>
+        </nav>
+    </header>
 	<div>
 		<a href="admin/">acceder a la administracion de la tienda</a>
 	</div>
 
-<div style="font-size: 12px; margin: 5px; padding: 3px 8px; display: inline-block; border: 1px solid #ccc; border-radius: 8px;">
+<div class="language-selector">
   Idioma: 
-  <a href="?idioma=fr" style="text-decoration: none; margin-right: auto; padding: 3px; border-radius: 8px; color: #333;">FRANÇAIS</a>
-  <a href="?idioma=en" style="text-decoration: none; color: #333; margin-right: auto; padding: 3px; border-radius: 8px;">ENGLISH</a>
+  <a href="?idioma=fr">FRANÇAIS</a>
+  <a href="?idioma=en">ENGLISH</a>
 </div>
 
-<div th:text="#{titulo.bienvenida}" ></div>
-
-	<div id="menu">
-		<a href="#" id="menu-inicio">Inicio</a> 
-		<a href="#" id="menu-identificarme">Identificarme</a>
-		<a href="#" id="menu-registrarme">Registrarme</a> 
-		<a href="#" id="menu-carrito">Carrito</a>
-		<a href="#" id="menu-mis-pedidos">Mis pedidos</a>
-		<a href="#" id="menu-mis-datos">Mis datos personales</a>
-		<a href="#" id="menu-cerrar-sesion" style="visibility: hidden;">cerrar sesion</a>
-	</div>
+<div class="bienvenida" th:text="#{titulo.bienvenida}" ></div>
 
 	<div id="contenedor"></div>
 

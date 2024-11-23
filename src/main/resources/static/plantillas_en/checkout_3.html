@@ -1,46 +1,48 @@
 <!-- paso 3 del procedimiento de checkout/compra -->
-<div>REALIZAR PEDIDO - PASO 3</div>
-<div>resumen del pedido:</div>
+<link rel="stylesheet" href="css/micssCheckOut3.css" />
 
-<div>
-productos del pedido:
-<div id="productos_pedido">
-	{{#cafes}}
-		<div style="margin:10px">
-			nombre: {{nombre}} <br>
-			<img height="40px" src="mostrar_imagen?id={{id}}" /> <br>
-			cantidad: {{cantidad}} <br>
-			precio/unidad: {{precio}} €
-		</div>
-	{{/cafes}}
-</div>
+<div class="checkout-step3">
+    <h2 class="checkout-title">PLACE ORDER - STEP 3</h2>
+    <p class="checkout-subtitle">Order Summary:</p>
 
-</div>
+    <section class="order-summary">
+        <h3 class="summary-section-title">Order products:</h3>
+        <div id="productos_pedido" class="product-list">
+            {{#cafes}}
+            <div class="product-item">
+                <p class="product-name">Name: {{nombre}}</p>
+                <img class="product-image" src="mostrar_imagen?id={{id}}" alt="{{nombre}}" />
+                <p class="product-quantity">Amount: {{cantidad}}</p>
+                <p class="product-price">Price/unity: {{precio}} €</p>
+            </div>
+            {{/cafes}}
+        </div>
+    </section>
 
-<div>
-datos de envio:
-</div>
-<div style="margin: 10px">
-	nombre completo: {{nombreCompleto}} <br>
-	direccion: {{direccion}} <br>
-	pais: {{pais}} <br>
-	provincia: {{provincia}} <br>
-	ciudad: {{ciudad}} <br>
-	codigo postal: {{codigoPostal}} <br>
-</div>
+    <section class="shipping-details">
+        <h3 class="summary-section-title">Shipping information:</h3>
+        <div class="details-content">
+            <p>Full name: {{nombreCompleto}}</p>
+            <p>Direction: {{direccion}}</p>
+            <p>Country: {{pais}}</p>
+            <p>Province: {{provincia}}</p>
+            <p>City: {{ciudad}}</p>
+            <p>Zip Code: {{codigoPostal}}</p>
+        </div>
+    </section>
 
+    <section class="payment-details">
+        <h3 class="summary-section-title">Datos de pago:</h3>
+        <div class="details-content">
+            <p>Tipo tarjeta: {{tipoTarjeta}}</p>
+            <p>Titular: {{titularTarjeta}}</p>
+            <p>Número tarjeta: {{numeroTarjeta}}</p>
+            <p>Número de seguridad: {{numeroSeguridad}}</p>
+            <p>Fecha de caducidad: {{fechaCaducidad}}</p>
+        </div>
+    </section>
 
-<div>
-datos de pago:
-</div>
-<div style=" margin: 10px">
-	tipo tarjeta: {{tipoTarjeta}} <br>
-	titular: {{titularTarjeta}} <br>
-	numero tarjeta: {{numeroTarjeta}} <br>
-	numero de seguridad: {{numeroSeguridad}} <br>
-	fecha de caducidad: {{fechaCaducidad}} <br>
-</div>
-
-<div>
-	<button style="padding: 10px" id="boton_confirmar_pedido" >CONFIRMAR PEDIDO</button>
+    <div class="button-container">
+        <button id="boton_confirmar_pedido" class="checkout-button">CONFIRMAR PEDIDO</button>
+    </div>
 </div>

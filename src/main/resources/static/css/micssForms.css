@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+/* Form container styles */
+.formulario-identificacion,
+.formulario-registro{
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #FFF8DC;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Title styles */
+.titulo-identificacion,
+.titulo-registro {
+    font-size: 24px;
+    color: #8B4513;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Label styles */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #5D4037;
+    font-weight: 500;
+}
+
+/* Input field styles */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #D7CCC8;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #8B4513;
+    box-shadow: 0 0 0 2px rgba(139, 69, 19, 0.1);
+}
+
+/* Checkbox styles */
+.opciones {
+    margin-bottom: 15px;
+}
+
+.opciones input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Submit button styles */
+.boton-enviar {
+    width: 100%;
+    padding: 12px;
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.boton-enviar:hover {
+    background-color: #6d3710;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+    .formulario-identificacion,
+    .formulario-registro {
+        padding: 20px;
+    }
+
+    .titulo-identificacion,
+    .titulo-registro {
+        font-size: 20px;
+    }
+
+    .input-field {
+        font-size: 14px;
+    }
+
+    .boton-enviar {
+        font-size: 14px;
+    }
+}

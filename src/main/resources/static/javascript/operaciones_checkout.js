@@ -26,7 +26,9 @@ function checkout_paso_intermedio_aceptar(){
 	if (!validarCodigoDescuento(codDescuento)) {
 		return
 	}else{
-		alert("¡¡Tienes un 5% de descuento!!")
+		if(codDescuento==="1234"){
+			alert("¡¡Tienes un 5% de descuento!!")
+		}
 	}
 		
 	$.post("realizar-pedido-paso-intermedio",{

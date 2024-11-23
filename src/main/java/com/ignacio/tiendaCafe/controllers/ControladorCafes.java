@@ -1,6 +1,7 @@
 package com.ignacio.tiendaCafe.controllers;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ignacio.tiendaCafe.model.Cafe;
+import com.ignacio.tiendaCafe.model.Categoria;
 import com.ignacio.tiendaCafe.servicios.ServicioCafes;
 import com.ignacio.tiendaCafe.servicios.ServicioCategorias;
 
@@ -80,22 +82,71 @@ public class ControladorCafes {
 	@RequestMapping("cafes-editar")
 	public String editarCafe(String id, Model model ) {
 		Cafe c = servicioCafes.obtenerCafePorId(Long.parseLong(id));
+		
 		model.addAttribute("cafeEditar",c);
+		model.addAttribute("categorias", servicioCategorias.obtenerCategorias()); 
 		return "admin/cafes-editar";
 	}
 	
+	
+	
 	@RequestMapping("cafes-guardar-cambios")
-	public String guardarCambiosCafe(Cafe CafeEditar, Model model, 
+	public String guardarCambiosCafe(@ModelAttribute("cafeEditar") @Valid Cafe cafeEditar, BindingResult bindingResult, Model model,
 			HttpServletRequest request) {
-		//antes de nada lo suyo seria validar los datos introducidos
+		
+		if (bindingResult.hasErrors()) {
+            model.addAttribute("categorias", servicioCategorias.obtenerCategorias());
+            return "admin/cafes-editar";
+        }
+			 
+		 try {
+			 
+			System.out.println( "id del cafe para encontrarlo "+ cafeEditar.getId());
+			 
+			 Cafe cafeOriginal = servicioCafes.obtenerCafePorId(cafeEditar.getId());
+			
+	            
+	            if (cafeOriginal == null) {
+	                throw new RuntimeException("No se encontró el cafe con ID: " + cafeEditar.getId());
+	            }
 
-		
-		//TODO falta bolver a asignar el archivo subido 
-		servicioCafes.actualizarCafe(CafeEditar);
-		
-		return obtenerCafes("",0,model);
+	            cafeOriginal.setNombre(cafeEditar.getNombre());
+	            cafeOriginal.setGrano(cafeEditar.getGrano());
+	            cafeOriginal.setRegion(cafeEditar.getRegion());
+	            cafeOriginal.setCuerpo(cafeEditar.getCuerpo());
+	            cafeOriginal.setDescripcion(cafeEditar.getDescripcion());
+	            cafeOriginal.setPrecio(cafeEditar.getPrecio());
+
+	            if (cafeEditar.getIdCategoria() != 0) {
+	                Categoria categoria = servicioCategorias.obtenerCategoriaPorId(cafeEditar.getIdCategoria());
+	                if (categoria != null) {
+	                    cafeOriginal.setCategoria(categoria);
+	                } else {
+	                    model.addAttribute("error", "Categoría no encontrada");
+	                    return "admin/cafes-editar";
+	                }
+	            }
+
+	            if (cafeEditar.getArchivoSubido() != null && !cafeEditar.getArchivoSubido().isEmpty()) {
+	                cafeOriginal.setImagenPortada(cafeEditar.getArchivoSubido().getBytes());
+	            }
+
+	            cafeOriginal.setFechaUltimaModificacion(new Date());
+
+	            servicioCafes.actualizarCafe(cafeOriginal);
+
+	            model.addAttribute("mensaje", "cafe actualizado con éxito");
+	        } catch (Exception e) {
+	            model.addAttribute("error", "Error al actualizar el cafe: " + e.getMessage());
+	            e.printStackTrace();
+	            return "admin/cafes-editar";
+	        }
+
+	        return "redirect:/admin/cafes";
+
 	}
 	
+		
 }
 
 

@@ -49,42 +49,71 @@ function agregarProductoAlCarrito() {
 
 
 
-function enviarInfoUsuarioAlServidor() {
-	let nombre = $("#nombre").val();
-	let email = $("#email").val();
-	let pass = $("#pass").val();
-	let dni = $("#dni").val();
-	let localidad = $("#localidad").val();
-	let codPostal = $("#codPostal").val();
+function enviarInfoUsuarioAlServidor() { 
+    let nombre = $("#nombre").val();
+    let email = $("#email").val();
+    let pass = $("#pass").val();
+    let dni = $("#dni").val();
+    let localidad = $("#localidad").val();
+    let codPostal = $("#codPostal").val();
 
+    // Validación de datos
+    if (!validarNombre(nombre) ||
+        !validarEmail(email) ||
+        !validarPass(pass) ||
+        !validarDni(dni) ||
+        !validarLocalidad(localidad) ||
+        !validarCodigoPostal(codPostal)) {
+        alert("Hay datos incorrectos");
+        return;
+    }
 
-	if (!validarNombre(nombre) ||
-		!validarEmail(email) ||
-		!validarPass(pass) ||
-		!validarDni(dni) ||
-		!validarLocalidad(localidad) ||
-		!validarCodigoPostal(codPostal)) {
-		alert("hay datos incorrectos")
-		return
-	}
+    // Enviar datos de registro al servidor
+    $.post("registrar-usuario-cliente", {
+        nombre: nombre,
+        email: email,
+        pass: pass,
+        dni: dni,
+        localidad: localidad,
+        codPostal: codPostal
+    }).done(function(res) {
+        if (res === "Usuario registrado correctamente") {
+            alert("Registro exitoso. Iniciando sesión...");
 
+            // Llamar directamente a la lógica de inicio de sesión
+            $.post("identificar-usuario", {
+                email: email,
+                pass: pass
+            }).done(function(resLogin) {
+                if (resLogin.operacion === "ok") {
+                    nombre_login = resLogin.usuario;
+                    alert("Bienvenido " + nombre_login + ", ya puedes comprar tu café favorito!");
+                    obtenerProductos();
 
-	$.post("registrar-usuario-cliente", {
-		nombre: nombre,
-		email: email,
-		pass: pass,
-		dni: dni,
-		localidad: localidad,
-		codPostal: codPostal
-
-	}).done(function(res) {
-		alert(res);
-	});
+                    // Actualizar la interfaz del menú
+                    $("#menu-cerrar-sesion").css("visibility", "visible");
+                    $("#menu-identificarme").hide();
+                    $("#menu-registrarme").hide();
+                } else {
+                    alert("Error al iniciar sesión automáticamente. Por favor, inicia sesión manualmente.");
+                }
+            }).fail(function() {
+                alert("Error al conectar con el servidor para iniciar sesión.");
+            });
+        } else {
+            alert("Error durante el registro: " + res.mensaje);
+        }
+    }).fail(function() {
+        alert("Error de conexión con el servidor durante el registro.");
+    });
 } // end enviarInfoUsuarioAlServidor
+
 
 function mostrarFormularioRegistroUsuario() {
 	$("#contenedor").html(html_formulario_registro_usuario);
 	$("#boton_registro_usuario").click(enviarInfoUsuarioAlServidor);
+	
+	
 }//end mostrarFormularioRegistroUsuario
 
 function mostrarFormularioLogin() {
@@ -172,11 +201,9 @@ function obtenerProductosCarrito() {
 
 
 			let res_html = Mustache.render(html_carrito, res)
-			$("#contenedor").html(res_html)
+			
 
 			$(".enlace_ver_detalles_cafe").click(mostrarDetallesProducto)
-
-
 
 			let total_productos = 0
 			let precio_total = 0
@@ -187,11 +214,18 @@ function obtenerProductosCarrito() {
 				precio_total += res[indice].precio * res[indice].cantidad
 
 			}
+			
+			if(total_productos <=0){
+				$("#contenedor").html("<h2>El carrito está vacío</h2>");
+			}else {
+				$("#contenedor").html(res_html)
 
-			$("#total_productos").html(total_productos)
-			$("#precio_total").html(precio_total)
-			//$("#producto")
-			$("#realizar-pedido").click(checkout_paso_0)
+				$("#total_productos").html(total_productos)
+				$("#precio_total").html(precio_total)			
+				$("#realizar-pedido").click(checkout_paso_0)
+				
+			}
+			
 		}
 	)
 }//end obtenerProductosCarrito
@@ -266,45 +300,62 @@ function actualizarTotales() {
 
         // Actualizar los totales en el HTML
         $('.productos-totales #total_productos').text(totalProductos);
-        $('.productos-totales #precio_total').text(precioTotal.toFixed(3)); // Asegúrate de mostrar el precio con 2 decimales
+        $('.productos-totales #precio_total').text(precioTotal.toFixed(2)); // Asegúrate de mostrar el precio con 2 decimales
     }).fail(function() {
         alert("Error al obtener los productos del carrito");
     });
 }
 
 
-$(document).on('click', '.boton-restar-cantidad', function() {
-	let cantidadContenedor = $(this).closest('.cantidad-cafe-carrito').find('.contenedor-cantidad-cafe');
+$(document).on('click', '.boton-restar-cantidad', function () {
+    let cantidadContenedor = $(this).closest('.cantidad-cafe-carrito').find('.contenedor-cantidad-cafe');
 
-	let totalProductos = $('.productos-totales #total_productos');
+    let totalProductos = $('.productos-totales #total_productos');
 
-	let idProducto = $(this).attr("id-producto")
+    let idProducto = $(this).attr("id-producto");
 
-	let cantidadActual = parseInt(cantidadContenedor.text());
+    let cantidadActual = parseInt(cantidadContenedor.text());
+    let totalProductosActual = parseInt(totalProductos.text()) || 0;
 
-	let totalProductosActual = parseInt(totalProductos.text()) || 0;
+    // Nuevos valores
+    if (cantidadActual > 0) {
+        // Nuevos valores si la cantidad es mayor que 0
+        let nuevaCantidad = cantidadActual - 1;
+        let nuevaCantidadTotal = totalProductosActual - 1;
 
-	//nuevos valores
-	let nuevaCantidad = cantidadActual - 1;
-	let nuevaCantidadTotal = totalProductosActual - 1;
+        // Actualiza el valor de la cantidad en el carrito
+        cantidadContenedor.text(nuevaCantidad);
+        totalProductos.text(nuevaCantidadTotal);
 
-	cantidadContenedor.text(nuevaCantidad);
-	totalProductos.text(nuevaCantidadTotal);
+        $.post("actualizar-cantidad-producto-carrito", {
+            id: idProducto,
+            cantidad: nuevaCantidad
+        }).done(function (res) {
+            // Verifica la respuesta del servidor
+            if (res == "ok") {
+                actualizarTotales();
 
+                // Si el total de productos es 0 después de actualizar, muestra el mensaje
+                if (nuevaCantidadTotal === 0) {
+                    $("#contenedor").html("<h2>El carrito está vacío</h2>");
+                }
+            } else {
+                alert("Hubo un error al actualizar la cantidad en el carrito");
+            }
+        }).fail(function () {
+            alert("Error de conexión con el servidor");
+        });
+    } else {
+        // Si la cantidad es 0, deshabilitamos el botón de restar para evitar más decrementos
+        $(this).prop('disabled', true);
 
-	$.post("actualizar-cantidad-producto-carrito", {
-		id: idProducto,
-		cantidad: nuevaCantidad
-	}).done(function(res) {
-		// Verifica la respuesta del servidor
-		if (res == "ok") {
-			actualizarTotales();
-		} else {
-			alert("Hubo un error al actualizar la cantidad en el carrito");
-		}
-	}).fail(function() {
-		alert("Error de conexión con el servidor");
-	});
+        // Solo mostrar el mensaje si el total de productos es 0
+        if (totalProductosActual === 0) {
+            $("#contenedor").html("<h2>El carrito está vacío</h2>");
+        }
+
+        alert("No puedes restar más cafés, ya tienes 0.");
+    }
 });
 
 //fin operaciones con plantillas

@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <title>Administración de Cafés</title>
     <link rel="stylesheet" href="../css/micssAdmin.css" /> 
-</head>
-<body>
-<style>
+    
+    <style>
 /* Base styles */
 body {
     font-family: Arial, sans-serif;
@@ -147,6 +146,10 @@ body {
 
 
 </style>
+    
+</head>
+<body>
+
 
 
 
@@ -195,7 +198,7 @@ body {
 
             <div class="acciones">
                 <a class="borrar-cafe-click" th:href="@{${'cafes-borrar?id='+c.id}}" onclick="return confirm('¿Seguro que deseas borrar este café?');">Borrar</a>
-                <a class="editar-cafe-click" href="#">Editar</a>
+                <a class="editar-cafe-click" th:href="@{${'cafes-editar?id='+c.id}}">Editar</a>
             </div>
         </div>
         

@@ -26,6 +26,13 @@ public class ServicioCategoriasJPAimpl implements ServicioCategorias {
 		
 		return entityManager.createQuery("select c from Categoria c").getResultList();
 	}
+
+
+	@Override
+	public Categoria obtenerCategoriaPorId(int idCategoria) {
+		
+		return entityManager.find(Categoria.class, idCategoria);
+	}
 	
 	
 	

@@ -1,56 +1,50 @@
 
-<h1>Shopping Cart</h1>
 
-    <div class="contenedor-carrito">
-        <div class="detalle-cafe-contenedor">
-            {{#.}}
-            <div class="detalle-cafe-header">
-                <img src="mostrar_imagen?id={{id}}" class="imagen-detalle-cafe" alt="{{titulo_cafe}}">
-                <div>
-                    <h2>{{nombre_cafe}}</h2>
-                    <div class="detalle-cafe-info">
-                        <div><strong>Price:</strong> {{precio}} €</div>
-                        <a href="#" class="enlace_ver_detalles_cafe"  id-producto="{{id}}" >see details</a>
-                                <div class="controles-cafe-carrito">
-	    	<div class="cantidad-cafe-carrito">
-			<div class="sumar-cafe">
-				<button class="boton-sumar-cantidad">+</button>
+<h1>Cart</h1>
+
+<div class="contenedor-carrito">
+	<div class="detalle-cafe-contenedor">
+		{{#.}}
+		<div class="detalle-cafe-header">
+			<img src="mostrar_imagen?id={{id}}" class="imagen-detalle-cafe" alt="{{titulo_cafe}}">
+			<div>
+				<h2>{{nombre_cafe}}</h2>
+				<div class="detalle-cafe-info">
+					<div><strong>Price:</strong> {{precio}} €</div>
+					<a href="#" class="enlace_ver_detalles_cafe" id-producto="{{id}}">see details</a>
+					
+					<div class="controles-cafe-carrito">
+					
+						<div class="cantidad-cafe-carrito">
+						
+							<div class="sumar-cafe">
+								<button class="boton-sumar-cantidad" id-producto="{{id}}">+</button>
+							</div>
+
+							<div class="contenedor-cantidad-cafe" id-producto="{{id}}">{{cantidad}}</div>
+
+							<div class="restar-cafe">
+								<button class="boton-restar-cantidad" id-producto="{{id}}">-</button>
+							</div>
+							
+						</div>
+				
+					</div>
+				</div>
 			</div>
-			
-			<div class="contenedor-cantidad-cafe" id-producto="{{id}}">{{cantidad}}</div>
-			
-			<div class="restar-cafe">
-				<button class="boton-restar-cantidad"> -</button>
-			</div>
-	    
-	    </div> 
-	    <div class="eliminar-cafe-carrito"></div>
-    
-    </div>
-                        
-                    </div>
-                </div>
-            </div>
-            {{/.}}
-        </div>
-        
+		</div>
+		{{/.}}
+	</div>
+	
+	<div class="productos-totales">
 
-
-        <p>Total products: <span id="total_productos"></span></p>
-        <p>Total Price: <span id="precio_total"></span> €</p>
-    
-    
-
-
-
-<br>
-
-incluir el precio total 
+		<p>Total products: <span id="total_productos"></span></p>
+		<p>Price total: <span id="precio_total"></span> €</p>
+	</div>
 </div>
 
 <div>
-
-<a href="#" id="realizar-pedido">PLACE ORDER</a>
-
+	<a href="#" id="realizar-pedido">PLACE ORDER</a>
 </div>
+
 

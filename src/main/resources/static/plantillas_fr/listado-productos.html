@@ -1,7 +1,8 @@
 <!-- Plantilla a usar por el js de index.html para mostrar un listado de productos usando Mustache -->
+<link rel="stylesheet" href="css/micssListadoProductos.css" />
 <div class="listado-cafes">
     <div class="titulo-listado">
-        Liste des cafés :
+       Liste des cafés en magasin :
     </div>
 
     <div class="grid-container">
@@ -11,10 +12,10 @@
                 <img src="mostrar_imagen?id={{id}}" alt="{{ titulo }}" class="imagen-cafe" />
             </div>
             <div class="informacion-cafe">
-            	<strong>Name:</strong> {{ nombre_cafe }} <br> 
-                <strong>Price:</strong> {{ precio }} euros
+            	<strong>Nom:</strong> {{ nombre_cafe }} <br> 
+                <strong>Prix:</strong> {{ precio }} euros
                 
-                <a href="#" class="enlace_ver_detalles_cafe"  id-producto="{{id}}" >See details</a>
+                <a href="#" class="enlace_ver_detalles_cafe"  id-producto="{{id}}" >voir les détails</a>
             </div>
         </div>
         {{/.}}

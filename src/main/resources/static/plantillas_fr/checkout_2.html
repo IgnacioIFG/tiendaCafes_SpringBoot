@@ -1,34 +1,42 @@
-<!-- paso 2 del procedimiento de checkout/compra -->
-<div>REALIZAR PEDIDO - PASO 2</div>
-<div>introduce tus datos de pago:</div>
-<div>(no introducir datos reales, aplicacion en pruebas)</div>
+<link rel="stylesheet" href="css/micssCheckOut2.css" />
 
 
-<div>
- tipo de tarjeta: <select id="tipo_tarjeta">
- 						<option value="0"> Elegir tipo</option>
- 						<option value="visa">VISA</option>
- 						<option value="master_card">MASTER CARD</option>
- 				  </select>
+
+<div class="checkout-step2">
+    <h2 class="checkout-title">REALIZAR PEDIDO - PASO 2</h2>
+    <p class="checkout-subtitle">Introduce tus datos de pago:</p>
+    <p class="checkout-warning">(no introducir datos reales, aplicación en pruebas)</p>
+
+    <form class="checkout-form">
+        <div class="form-group">
+            <label for="tipo_tarjeta">Tipo de tarjeta:</label>
+            <select id="tipo_tarjeta" class="checkout-select">
+                <option value="0">Elegir tipo</option>
+                <option value="visa">VISA</option>
+                <option value="master_card">MASTER CARD</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="numero_tarjeta">Número de tarjeta:</label>
+            <input type="text" id="numero_tarjeta" class="checkout-input" />
+        </div>
+
+        <div class="form-group">
+            <label for="titular_tarjeta">Titular de la tarjeta:</label>
+            <input type="text" id="titular_tarjeta" class="checkout-input" />
+        </div>
+
+        <div class="form-group">
+            <label for="numSeguridad_tarjeta">Número de seguridad:</label>
+            <input type="text" id="numSeguridad_tarjeta" class="checkout-input" />
+        </div>
+
+        <div class="form-group">
+            <label for="caducidad_tarjeta">Fecha de caducidad:</label>
+            <input type="text" id="caducidad_tarjeta" class="checkout-input" />
+        </div>
+
+        <button type="button" id="aceptar_paso_2" class="checkout-button">ACEPTAR</button>
+    </form>
 </div>
-
-<div>
-	numero de tarjeta <input type="text" id="numero_tarjeta" /> 
-</div>
-
-<div>
-	titular de la tarjeta <input type="text" id="titular_tarjeta" /> 
-</div>
-
-<div>
-	numero de seguridad <input type="text" id="numSeguridad_tarjeta" /> 
-</div>
-<div>
-	fecha de caducidad <input type="text" id="caducidad_tarjeta" /> 
-</div>
-
-
-<div>
-	<button style="padding: 10px" id="aceptar_paso_2" >ACEPTAR</button>
-</div>
-

@@ -57,10 +57,12 @@ input[type="submit"]:hover {
 
 <div th:insert="fragments/general.html :: menu"></div>
 
-<h1 class="newCaffe">Nuevo cafe</h1>
+<h1 class="newCaffe">Editar cafe</h1>
 
 
-<form action="#" th:action="cafes-guardar-nuevo" th:object="${nuevoCafe}" method="post" enctype="multipart/form-data">
+<form th:action="@{/admin/cafes-guardar-cambios}"  th:object="${cafeEditar}" method="post" enctype="multipart/form-data">
+
+	<input type="hidden" th:field="*{id}" />
 
 	nombre: <input type="text" th:field="*{nombre}"/> 
 	<span style="color: red;" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}" ></span>
@@ -76,13 +78,14 @@ input[type="submit"]:hover {
 	categoria:
 	<select th:field="*{idCategoria}">
 		
-		<option th:each="ca : ${categorias}" th:text="${ca.nombre}" th:value="${ca.id}"/>	
+		<option th:each="ca : ${categorias}" th:text="${ca.nombre}" th:value="${ca.id}"  th:selected="${ca.id == cafeEditar.idCategoria}"/>	
 	</select>
+	
 	
 	<br>
 	<input type="file" th:field="*{archivoSubido}">
 	
-	<input type="submit" value="REGISTRAR NUEVO CAFE">
+	<input type="submit" value="EDITAR CAFE">
 	
 </form>
 

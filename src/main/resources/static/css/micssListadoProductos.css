@@ -1,0 +1,136 @@
+@charset "UTF-8";
+
+.listado-cafes {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.titulo-listado {
+    font-size: 24px;
+    color: #4A4A4A;
+    margin-bottom: 30px;
+    font-weight: 500;
+    text-align: center; /* Centra el título */
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Siempre dos columnas */
+    gap: 30px;
+    padding: 20px;
+}
+
+.producto {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-align: center; /* Centra el contenido */
+}
+
+.producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Sombra más intensa al pasar por encima */
+}
+
+.imagen-cafe-container {
+	
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.imagen-cafe {
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+/* Información del producto */
+.informacion-cafe {
+    color: #333;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.informacion-cafe strong {
+    color: #4A4A4A;
+}
+
+/* Enlace de detalles */
+.enlace_ver_detalles_cafe {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #6f4c3e;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    font-weight: bold;
+}
+
+.enlace_ver_detalles_cafe:hover {
+    background-color: #b2a1a1;
+}
+
+/* Detalles del café */
+.detalle-cafe-contenedor {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Imagen del detalle */
+.imagen-detalle-cafe {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Botón agregar al carrito */
+.btn-agregar-carrito {
+    background-color: #6f4c3e;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-agregar-carrito:hover {
+    background-color: #b2a1a1;
+    cursor: pointer;
+}
+
+/* Responsivo para pantallas medianas */
+@media (max-width: 960px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* Una columna */
+    }
+
+    .producto {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
+/* Responsivo para pantallas pequeñas */
+@media (max-width: 480px) {
+    .imagen-cafe {
+        max-width: 100%;
+    }
+
+    .titulo-listado {
+        font-size: 20px;
+    }
+}
+}

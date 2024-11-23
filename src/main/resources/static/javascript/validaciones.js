@@ -63,7 +63,7 @@ function validarFechaCaducidad(fechaCaducidad){
 	if( regexp_fechaCaducidad.test(fechaCaducidad) ){
 		return true;
 	}else{
-		alert("numero de seguridad debe tener 3 numeros")
+		alert("la fecha debe tener formato 31/12")
 	}
 }
 
